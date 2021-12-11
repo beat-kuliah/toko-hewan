@@ -3,9 +3,9 @@
 <html>
     <body>
         @yield('content-head')
-        <nav class="navbar navbar-expand-xxl navbar-light main-navigation navbar-toggler" style="background-color: #FFE4B5">
+        <nav class="navbar navbar-expand-xl navbar-light" style="background-color: #FFE4B5">
             <div class="container-fluid">
-                <a class="navbar-brand" href="/home">QURBANER</a>
+                <a class="navbar-brand" href="/">QURBANER</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -15,22 +15,19 @@
                             <a class="nav-link active" aria-current="page" href="/home">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/partnership">Partnership</a>
+                            <a class="nav-link" href="/contact">Pesan</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/contact">Contact</a>
+                            <a class="nav-link" href="/help">Notifikasi</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/help">Help</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="aboutus">About Us</a>
+                            <a class="nav-link" href="aboutus">Account</a>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
-        <div class="container-fluid">
+        <div class="container-fluid" style="margin-top: 10px">
             @yield('content-body')
         </div>
     </body>
