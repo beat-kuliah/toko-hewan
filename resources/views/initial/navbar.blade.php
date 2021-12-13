@@ -15,9 +15,15 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/notifikasi">Notifikasi</a>
                 </li>
+                @if(Auth::check())
                 <li class="nav-item">
                     <a class="nav-link" href="/login">Login</a>
                 </li>
+                @else
+                <li class="nav-item">
+                    <a class="nav-link" href="/account">Account</a>
+                </li>
+                @endif
             </ul>
         </div>
     </div>
