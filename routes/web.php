@@ -14,3 +14,15 @@
 Route::get('/', function () {
     return view('home');
 });
+
+Auth::routes();
+Route::get('/logout', 'Auth\LoginController@logout');
+
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/pesan', function () {
+        return view('pesan');
+    });
+    Route::get('/notifikasi', function () {
+        return view('notifikasi');
+    });
+});
