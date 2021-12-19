@@ -45,7 +45,7 @@
                 <!-- <h4>5 tersisa 3 ekor</h4> -->
                 <div class="btn-group" role="group" aria-label="Basic outlined example">
                   <button type="button" onclick="divideFunction()" class="btn btn-outline-primary">-</button>
-                  <input type="tel" name="jumlah" style="width: 100px" value="1" id="jumlah"/>
+                  <input type="text" class="numeric" name="jumlah" style="width: 100px" value="1" id="jumlah" autocomplete="off"/>
                   <button type="button" onclick="addFunction()" class="btn btn-outline-primary">+</button>
                 </div>
             </div>
@@ -86,6 +86,7 @@
         @endforeach
     </div>
 </div>
+@endif
 
 <div class="preloader">
   <div class="loading">
@@ -93,16 +94,33 @@
     <p style="text-align:center; margin-left: 20px">Harap Tunggu</p>
   </div>
 </div>
-@endif
+
+<div class="success" style="display: none">
+  <div class="icon">
+    <center>
+      <img src="{{ URL::to('/images/success.png') }}" width="200"><br>
+      <h3>Success</h3>
+      <a href="/" class="btn btn-success btn-lg" role="button" aria-disabled="true">Home</a>
+      <button type="button"  onclick="message()" class="btn btn-warning btn-lg"><i class="far fa-comment-dots"></i>&nbsp;Chat Penjual</button>
+      <a href="/pesanan" class="btn btn-success btn-lg" role="button" aria-disabled="true">Pesanan</a>
+    </center>
+  </div>
+</div>
 
 @endsection
 
 @section('script')
 <script type='text/javascript'>
-  var userId = "{{ Auth::user()->id }}";
-
+  $('.numeric').on('input', function (event) { 
+    this.value = this.value.replace(/[^0-9]/g, '');
+  });
   $( document ).ready(function() {
     $(".preloader").fadeOut();
+    document.getElementById("jumlah").addEventListener("change", function() {
+      let v = parseInt(this.value);
+      if (v < 1) this.value = 1;
+      if (v > 50) this.value = 50;
+    });
   });
 
   function addFunction(){
@@ -112,29 +130,55 @@
 
   function divideFunction(){
     var x = document.getElementById("jumlah").value;
-    if(x != 1)
+    if(x > 1)
       document.getElementById("jumlah").value = Math.floor(x) - 1;
   }
 
   function order(){
-    $(".preloader").fadeIn();
-    var formData = new FormData();
-    formData.append('userId', userId);
-    formData.append('product', "{{ $product->id }}");
-    formData.append('jumlah', document.getElementById("jumlah").value);
-    axios({
-      method: "post",
-      url: "/order",
-      data: formData,
-      headers: { "Content-Type": "multipart/form-data" },
-    })
-      .then(function (response) {
-        $(".preloader").fadeOut();
+    var check = true;
+
+    if(document.getElementById("jumlah").value == "" || document.getElementById("jumlah").value == null){
+      alert("Jumlah item tidak boleh kosong !");
+      check = false;
+    }
+
+    if(document.getElementById("alamat").value == "" || document.getElementById("alamat").value == null){
+      alert("Alamat item tidak boleh kosong !");
+      check = false;
+    }
+
+    if(document.getElementById("payment").value == "" || document.getElementById("payment").value == null){
+      alert("Harap pilih pembayaran !");
+      check = false;
+    }
+
+    if(check){
+      $(".preloader").fadeIn();
+      var formData = new FormData();
+      formData.append('userId', "{{ Auth::user()->id }}");
+      formData.append('product', "{{ $product->id }}");
+      formData.append('jumlah', document.getElementById("jumlah").value);
+      formData.append('alamat', document.getElementById('alamat').value);
+      formData.append('payment', document.getElementById('payment').value);
+      axios({
+        method: "post",
+        url: "/order",
+        data: formData,
+        headers: { "Content-Type": "multipart/form-data" },
       })
-      .catch(function (response) {
-        //handle error
-        console.log(response);
-      });
+        .then(function (response) {
+          $(".preloader").fadeOut();
+          console.log(response);
+          console.log(response.data.response);
+          if(response.data.response == 'success')
+            $(".success").fadeIn();
+        })
+        .catch(function (response) {
+          //handle error
+          $(".preloader").fadeOut();
+          console.log(response);
+        });
+    }
   }
 
   function message(){

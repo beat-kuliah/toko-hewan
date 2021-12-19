@@ -33,4 +33,9 @@ class Order extends Model
     {
         return $this->belongsTo(Payment::class, 'pembayaranId');
     }
+
+    public function Status()
+    {
+        return $this->belongsTo(Status::class ,'status');
+    }
 }

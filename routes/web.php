@@ -31,4 +31,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/cart/{id}', 'KeranjangController@index');
 
     Route::post('/order', 'PesananController@store');
+    Route::get('/order/status/{order}/{id}', 'PesananController@update');
+    Route::get('/pesanan', 'PesananController@index');
 });

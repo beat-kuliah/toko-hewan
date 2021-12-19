@@ -21,6 +21,22 @@
                 transform: translate(-50%,-50%);
                 font: 14px arial;
             }
+            .success {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 9999;
+                background-color: #fff;
+            }
+            .success .icon {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%,-50%);
+                font: 14px arial;
+            }
         </style>
     </head>
     <body style="background-color: #e8e8e8;">
@@ -30,4 +46,9 @@
         </div>
     </body>
     @yield('script')
+    <script>
+        function coming_soon(){
+            alert('Coming Soon !')
+        }
+    </script>
 </html>
