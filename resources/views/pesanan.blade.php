@@ -14,7 +14,7 @@
             <h5 class="card-text" style="float: right">{{ $o->Product->rating }} &nbsp;<i class="fas fa-star"></i></h5>
             <h5 class="card-text">{{ $o->Product->description }}</h5>
             <h5 class="card-text">Jumlah Item : {{ $o->jumlah }} item</h5>
-            @if($o->status == 3)
+            @if(Auth::user()->role == 1 && $o->status == 3)
                 <a href="/order/status/{{ $o->id }}/4" class="btn btn-primary btn-lg" role="button" style="float: right">Nilai</a>
             @else()
                 @if(Auth::user()->role == 0)
