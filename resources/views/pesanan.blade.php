@@ -20,7 +20,8 @@
                 @if(Auth::user()->role == 0)
                     @if($o->status == 1)
                         <a href="/order/status/{{ $o->id }}/2" class="btn btn-primary btn-lg" role="button" style="float: right">Bayar</a>
-                    @else
+                    @endif
+                    @if($o->status == 2)
                         <a href="/order/status/{{ $o->id }}/3" class="btn btn-primary btn-lg" role="button" style="float: right">Kirim</a>
                     @endif
                 @endif
