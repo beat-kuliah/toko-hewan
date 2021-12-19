@@ -24,40 +24,54 @@
   </button>
 </div>
 
-<div class="row row-cols-1 row-cols-md-4 g-4">
-  <div class="col">
-    <div class="card h-100">
-      <img src="{{ URL::to('/images/avatar.jpg') }}" class="card-img-top" alt="..." style="padding: 10px 10px 10px 10px">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">{{ Auth::user() }}</p>
+<div>
+  <ul class="nav nav-tabs" id="myTab" role="tablist" style="width: 100%">
+    <li class="nav-item" role="presentation" style="width: 50%">
+      <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Pasar Hewan</button>
+    </li>
+    <li class="nav-item" role="presentation" style="width: 50%">
+      <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Rumah Potong Hewan</button>
+    </li>
+  </ul>
+  <div class="tab-content" id="myTabContent" style="margin-top: 10px">
+    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+      <div class="row row-cols-1 row-cols-md-5 g-4">
+        @if($hewan->count() == 0)
+          <center><h3>Tidak ada data</h3></center>
+        @endif
+        @foreach($hewan as $h)
+          <div class="col">
+            <a href="/product/{{ $h->id }}" style="color: black; text-decoration: none;">
+              <div class="card h-100">
+                <img src="{{ $h->image }}" class="card-img-top" alt="..." style="padding: 10px 10px 10px 10px">
+                <div class="card-body">
+                  <h6 style="float: right">{{ $h->rating }}&nbsp;<i class="fas fa-star"></i></h6>
+                  <h5 class="card-title">{{ $h->nama }}</h5>
+                  <h6>Rp.{{ $h->harga }}</h6>
+                </div>
+              </div>
+            </a>
+          </div>
+        @endforeach
       </div>
     </div>
-  </div>
-  <div class="col">
-    <div class="card h-100">
-    <img src="{{ URL::to('/images/avatar.jpg') }}" class="card-img-top" alt="..." style="padding: 10px 10px 10px 10px">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">This is a short card.</p>
-      </div>
-    </div>
-  </div>
-  <div class="col">
-    <div class="card h-100">
-    <img src="{{ URL::to('/images/avatar.jpg') }}" class="card-img-top" alt="..." style="padding: 10px 10px 10px 10px">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
-      </div>
-    </div>
-  </div>
-  <div class="col">
-    <div class="card h-100">
-    <img src="{{ URL::to('/images/avatar.jpg') }}" class="card-img-top" alt="..." style="padding: 10px 10px 10px 10px">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+      <div class="row row-cols-1 row-cols-md-5 g-4">
+        @if($tempat->count() == 0)
+          <center><h3>Tidak ada data</h3></center>
+        @endif
+        @foreach($tempat as $t)
+          <div class="col">
+            <div class="card h-100">
+              <img src="{{ URL::to('/images/avatar.jpg') }}" class="card-img-top" alt="..." style="padding: 10px 10px 10px 10px">
+              <div class="card-body">
+                <h6 style="float: right">{{ $t->rating }}<i class="fas fa-star"></i></h6>
+                <h5 class="card-title">{{ $t->nama }}</h5>
+                <h6>Rp.{{ $t->harga }}</h6>
+              </div>
+            </div>
+          </div>
+        @endforeach
       </div>
     </div>
   </div>

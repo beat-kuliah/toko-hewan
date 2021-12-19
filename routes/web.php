@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', 'HomeController@index');
 
 Auth::routes();
 Route::get('/logout', 'Auth\LoginController@logout');
@@ -25,4 +23,12 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/notifikasi', function () {
         return view('notifikasi');
     });
+
+    Route::get('/keranjang', 'KeranjangController@index');
+
+    Route::get('/product/{id}', 'ProductController@index');
+
+    Route::get('/cart/{id}', 'KeranjangController@index');
+
+    Route::post('/order', 'PesananController@store');
 });
