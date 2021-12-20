@@ -24,7 +24,7 @@
   </button>
 </div>
 
-<div>
+<div style="background-color: white;padding: 10px; padding-bottom: 10px">
   <ul class="nav nav-tabs" id="myTab" role="tablist" style="width: 100%">
     <li class="nav-item" role="presentation" style="width: 50%">
       <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Pasar Hewan</button>
