@@ -111,7 +111,7 @@
 
 @section('script')
 <script type='text/javascript'>
-  let order = "";
+  var orderId;
 
   $('.numeric').on('input', function (event) { 
     this.value = this.value.replace(/[^0-9]/g, '');
@@ -171,7 +171,7 @@
         .then(function (response) {
           $(".preloader").fadeOut();
           if(response.data.response == 'success'){
-            order = response.data.noPesanan;
+            orderId = response.data.noPesanan;
             $(".success").fadeIn();
           }
         })
@@ -192,7 +192,7 @@
 
   function messageOrder(){
     window.open(
-      'https://wa.me/628972524442?text=NoPesanan%20' + order,
+      'https://wa.me/628972524442?text=NoPesanan%20' + orderId,
       '_blank' // <- This is what makes it open in a new window.
     );
   }
