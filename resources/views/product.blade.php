@@ -101,7 +101,7 @@
       <img src="{{ URL::to('/images/success.png') }}" width="200"><br>
       <h3>Success</h3>
       <a href="/" class="btn btn-success btn-lg" role="button" aria-disabled="true">Home</a>
-      <button type="button"  onclick="message()" class="btn btn-warning btn-lg"><i class="far fa-comment-dots"></i>&nbsp;Chat Penjual</button>
+      <button type="button"  onclick="messageOrder()" class="btn btn-warning btn-lg"><i class="far fa-comment-dots"></i>&nbsp;Chat Penjual</button>
       <a href="/pesanan" class="btn btn-success btn-lg" role="button" aria-disabled="true">Pesanan</a>
     </center>
   </div>
@@ -111,6 +111,8 @@
 
 @section('script')
 <script type='text/javascript'>
+  var order = "";
+
   $('.numeric').on('input', function (event) { 
     this.value = this.value.replace(/[^0-9]/g, '');
   });
@@ -168,10 +170,10 @@
       })
         .then(function (response) {
           $(".preloader").fadeOut();
-          console.log(response);
-          console.log(response.data.response);
-          if(response.data.response == 'success')
+          if(response.data.response == 'success'){
+            order = response.data.noPesanan;
             $(".success").fadeIn();
+          }
         })
         .catch(function (response) {
           //handle error
@@ -184,6 +186,13 @@
   function message(){
     window.open(
       'https://wa.me/628972524442',
+      '_blank' // <- This is what makes it open in a new window.
+    );
+  }
+
+  function messageOrder(){
+    window.open(
+      'https://wa.me/628972524442?text=NoPesanan%20' + order,
       '_blank' // <- This is what makes it open in a new window.
     );
   }

@@ -64,6 +64,9 @@
                                 @endif
                             </div>
                         </div>
+                        <div class="form-group row mb-0" style="margin-top: 20px; margin-bottom: -10px">
+                            <center><a href="/register"><small class="text-muted">want register ? Register</small></a></center>
+                        </div>
                     </form>
                 </div>
             </div>

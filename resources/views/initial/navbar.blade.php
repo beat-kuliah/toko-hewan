@@ -10,17 +10,17 @@
                     <a class="nav-link active" aria-current="page" href="/">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" onclick="coming_soon()" href="/pesan">Pesan</a>
+                    <a class="nav-link" onclick="coming_soon()" href="">Pesan</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" onclick="coming_soon()" href="/notifikasi">Notifikasi</a>
+                    <a class="nav-link" onclick="coming_soon()" href="">Notifikasi</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/pesanan">Pesanan</a>
                 </li>
                 @if(Auth::check())
                 <li class="nav-item">
-                    <a class="nav-link" onclick="coming_soon()" href="/account">Account</a>
+                    <a class="nav-link" onclick="coming_soon()" href="">Account</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/logout">Logout</a>

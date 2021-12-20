@@ -24,6 +24,8 @@
                     @if($o->status == 2)
                         <a href="/order/status/{{ $o->id }}/3" class="btn btn-primary btn-lg" role="button" style="float: right">Kirim</a>
                     @endif
+                @else
+                    <a href="https://wa.me/628972524442?text=NoPesanan%20{{ $o->noPesanan }}" target="_blank" class="btn btn-primary btn-lg" role="button" style="float: right"><i class="far fa-comment-dots"></i>&nbsp;Chat Penjual</a>
                 @endif
             @endif
             <h5 class="card-text">Total: Rp.{{ $o->harga }}</h5>
