@@ -5,7 +5,7 @@
 <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" style="margin-bottom: 10px">
   <div class="carousel-inner" style="border-radius: 10px">
     <div class="carousel-item active">
-      <a href="" onclick="coming_soon()"><img src="{{ URL::to('/images/image_1.jpg') }}" class="d-block w-100" alt="..." height="300px"></a>
+      <a href="" onclick="coming_soon()"><img src="{{ URL::to('/images/image_4.jpg') }}" class="d-block w-100" alt="..." height="300px"></a>
     </div>
     <div class="carousel-item">
       <a href="" onclick="coming_soon()"><img src="{{ URL::to('/images/image_2.jpg') }}" class="d-block w-100" alt="..." height="300px"></a>
